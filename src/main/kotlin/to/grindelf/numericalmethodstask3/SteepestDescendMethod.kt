@@ -18,6 +18,7 @@ object SteepestDescendMethod {
 
         return Result(x = x, tolerance = tolerance, iterations = counter)
     }
+
     private fun iterationIsPossible(xNext: Vector4, x: Vector4, r: Vector4, tolerance: Double) =
         ((xNext - x).abs() >= tolerance || r.abs() >= tolerance)
 }
