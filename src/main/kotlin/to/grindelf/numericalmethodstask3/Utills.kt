@@ -11,18 +11,9 @@ object CommonUtility {
         -0.17, 0.21, -0.31, 1.0
     )
 
-    /*val MATRIX = Matrix44(
-        1.12, 0.13, 0.14, 0.15,
-        0.16, 1.17, 0.18, 0.19,
-        0.2, 0.21, 1.22, 0.23,
-        0.24, 0.25, 0.26, 1.27
-    )*/
-
     val X0 = Vector4(0.0, 0.0, 0.0, 0.0)
 
     val RIGHT_SIDE_VECTOR4 = Vector4(2.7, -1.5, 1.2, -0.17)
-
-    // val RIGHT_SIDE_VECTOR4 = Vector4(0.05, -0.05, 0.15, -0.15)
 }
 
 data class Matrix44(
@@ -62,19 +53,29 @@ data class Result(val iterations: Int, val x: Vector4, val tolerance: Double) {
     )
 
     override fun toString(): String {
-        var string = "Tolerance: $tolerance"
-        results.forEachIndexed { index, result ->
-            string += " x${index + 1} = $result,"
+        var string = when {
+            iterations == 0 && tolerance == 0.0 -> ""
+            else -> "Tolerance: $tolerance "
         }
-        string += " Iterations: $iterations"
+        results.forEachIndexed { index, result ->
+            string += "x${index + 1} = $result, "
+        }
+        string += when {
+            iterations == 0 && tolerance == 0.0 -> ""
+            else -> "Iterations: $iterations"
+        }
 
         return string
     }
 }
 
 data class Vector4(val x1: Double, val x2: Double, val x3: Double, val x4: Double) {
-    operator fun minus(other: Vector4) = Vector4(this.x1 - other.x1, this.x2 - other.x2, this.x3 - other.x3, this.x4 - other.x4)
-    operator fun times(other: Vector4): Double = this.x1 * other.x1 + this.x2 * other.x2 + this.x3 * other.x3 + this.x4 * other.x4
+    operator fun minus(other: Vector4) =
+        Vector4(this.x1 - other.x1, this.x2 - other.x2, this.x3 - other.x3, this.x4 - other.x4)
+
+    operator fun times(other: Vector4): Double =
+        this.x1 * other.x1 + this.x2 * other.x2 + this.x3 * other.x3 + this.x4 * other.x4
+
     operator fun times(other: Double) = Vector4(this.x1 * other, this.x2 * other, this.x3 * other, this.x4 * other)
 
     fun abs() = sqrt(this.x1 * this.x1 + this.x2 * this.x2 + this.x3 * this.x3 + this.x4 * this.x4)
