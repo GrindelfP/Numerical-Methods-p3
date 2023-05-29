@@ -25,3 +25,4 @@ object ConjugateGradientMethod {
     private fun iterationIsPossible(xNext: Vector4, x: Vector4, r: Vector4, tolerance: Double) =
         ((xNext - x).abs() >= tolerance || r.abs() >= tolerance)
 }
+

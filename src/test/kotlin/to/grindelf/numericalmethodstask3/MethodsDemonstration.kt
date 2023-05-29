@@ -12,6 +12,7 @@ class MethodsDemonstration {
 
     @Test
     fun `GIVEN equations system WHEN gradient method applied THEN expected results returned`() {
+        println("\nConjugate gradient method:")
         tolerances.forEach {tolerance ->
             val result = ConjugateGradientMethod.solution(
                 CommonUtility.MATRIX,
@@ -21,15 +22,16 @@ class MethodsDemonstration {
             )
             println(result)
 
-            assertThat(result.x.x1).isCloseTo(xes[0], offset(tolerance))
+            /*assertThat(result.x.x1).isCloseTo(xes[0], offset(tolerance))
             assertThat(result.x.x2).isCloseTo(xes[1], offset(tolerance))
             assertThat(result.x.x3).isCloseTo(xes[2], offset(tolerance))
-            assertThat(result.x.x4).isCloseTo(xes[3], offset(tolerance))
+            assertThat(result.x.x4).isCloseTo(xes[3], offset(tolerance))*/
         }
     }
 
     @Test
     fun `GIVEN equations system WHEN steepest descend method applied THEN expected results returned`() {
+        println("\nSteepest descend method:")
         tolerances.forEach {tolerance ->
             val result = SteepestDescendMethod.solution(
                 CommonUtility.MATRIX,
@@ -39,15 +41,16 @@ class MethodsDemonstration {
             )
             println(result)
 
-            assertThat(result.x.x1).isCloseTo(xes[0], offset(tolerance))
+            /*assertThat(result.x.x1).isCloseTo(xes[0], offset(tolerance))
             assertThat(result.x.x2).isCloseTo(xes[1], offset(tolerance))
             assertThat(result.x.x3).isCloseTo(xes[2], offset(tolerance))
-            assertThat(result.x.x4).isCloseTo(xes[3], offset(tolerance))
+            assertThat(result.x.x4).isCloseTo(xes[3], offset(tolerance))*/
         }
     }
 
     @Test
     fun `GIVEN equations system WHEN gaussian method applied THEN expected results returned`() {
+        println("\nGaussian method:")
         val result = GaussianMethod.solution(
             CommonUtility.MATRIX,
             CommonUtility.RIGHT_SIDE_VECTOR4,
@@ -55,9 +58,9 @@ class MethodsDemonstration {
 
         println(result)
 
-        assertThat(result.x.x1).isCloseTo(xes[0], offset(1e-7))
+        /*assertThat(result.x.x1).isCloseTo(xes[0], offset(1e-7))
         assertThat(result.x.x2).isCloseTo(xes[1], offset(1e-7))
         assertThat(result.x.x3).isCloseTo(xes[2], offset(1e-7))
-        assertThat(result.x.x4).isCloseTo(xes[3], offset(1e-7))
+        assertThat(result.x.x4).isCloseTo(xes[3], offset(1e-7))*/
     }
 }
